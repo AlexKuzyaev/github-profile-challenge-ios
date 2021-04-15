@@ -14,7 +14,7 @@ final class Network {
     // MARK: - Constants
     
     private enum Constants {
-        static let token = "bearer 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"
+        static let token = "bearer *" // update * with your valid presonal Github token
         static let api = "https://api.github.com/graphql"
         
         enum HTTPHeaders {
