@@ -1,0 +1,46 @@
+query getUser($login: String!) {
+  user(login: $login) {
+    name
+    login
+    avatarUrl
+    email
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    pinnedItems(types: [REPOSITORY], first: 3) {
+      nodes {
+        ... on Repository {
+          ...RepositoryDetail
+        }
+      }
+    }
+    topRepositories(orderBy: {field: UPDATED_AT, direction: DESC}, first: 10) {
+      nodes {
+           ...RepositoryDetail
+      }
+    }
+    starredRepositories(first: 10) {
+      nodes {
+           ...RepositoryDetail
+      }
+    }
+  }
+}
+
+fragment RepositoryDetail on Repository {
+    id
+    owner {
+        login
+        avatarUrl
+    }
+    name
+    description
+    stargazerCount
+    primaryLanguage {
+        name
+        color
+    }
+}
